@@ -423,7 +423,7 @@ service ril-daemon /system/bin/rild
     socket rild1 stream 660 root radio
     socket rild-debug stream 660 radio system
     user root
-    group radio cache inet misc audio system sdcard_rw log sdcard_r
+    group radio cache inet misc audio system log
 
 service charger /sbin/healthd -c
     class charger
@@ -477,7 +477,7 @@ service gpsd /system/bin/glgps -c /system/etc/gps/glconfig.xml
     setenv LD_PRELOAD /system/lib/libglgps-compat.so
     class late_start
     user gps
-    group system wakelock sdcard_rw inet root radio wifi
+    group system wakelock inet root radio wifi
 
 # tvserver
 service tvserver /system/bin/tvserver
