@@ -37,7 +37,7 @@ on init
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
 
-    # for backwards compatibility
+# for backwards compatibility
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
@@ -59,7 +59,7 @@ on init
 
     symlink /dev/block/mmcblk0p11 /dev/block/param
     
-    # We will create our own ril-daemon service with different perm and sockets
+# We will create our own ril-daemon service with different perm and sockets
     stop ril-daemon
 
 on post-fs-data
@@ -67,13 +67,8 @@ on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
 
-# SA, System SW, SAMSUNG create log directory
-    mkdir /data/log 0775 system log
-    chown system log /data/log
+# Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
-
-    chmod 0775 /data/log
-    chmod 0775 /data/anr
 
 # for wifi
     mkdir /efs/wifi 0775 radio system
@@ -82,7 +77,6 @@ on post-fs-data
     mkdir /data/misc/wifi 0775 wifi system
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0775 dhcp dhcp
-    mkdir /system/etc/wifi 0775 wifi wifi
     chown system system /efs/wifi/.mac.info
     chmod 0664 /efs/wifi/.mac.info
     chown system system /efs/imei/.nvmac.info
@@ -111,39 +105,16 @@ on post-fs-data
     write /proc/vc/display/vchiq_control "earlysuspctrl "
     write /proc/vc/display/vchiq_control "autosuspend "
 
-on charger
-    chmod 0660 /proc/vc
-    chmod 0660 /proc/vc/display
-    chmod 0660 /proc/vc/display/vchiq_control
-    write /proc/vc/display/vchiq_control "earlysuspctrl "
-    write /proc/vc/display/vchiq_control "autosuspend "
-
-    # for control LCD backlight
     chown system system /sys/class/backlight/panel/brightness
     chmod 0660 /sys/class/backlight/panel/brightness
 
-    chown system system /sys/class/leds/button-backlight/brightness
-    chmod 0660 /sys/class/leds/button-backlight/brightness
-
-    chown system system /sys/class/backlight/keypad-led/brightness
-    chmod 0660 /sys/class/backlight/keypad-led/brightness
-
-# for adb
-    chmod 0775 /system/etc/usbdev.sh
-    chmod 0775 /system/etc/startadb.sh
+    chown system system /sys/class/backlight/touchkey-led/brightness
+    chmod 0660 /sys/class/backlight/touchkey-led/brightness
 
 on boot
 # SISO-ANDR_PERF :: START Changing scheduler to noop during boot
     write /sys/block/mmcblk0/queue/scheduler noop
 # SISO-ANDR_PERF :: END
-
-    setprop ro.build.product capri
-    setprop ro.product.device capri
-
-# WIFI
-    setprop wifi.interface wlan0
-
-    symlink /dev/block/mmcblk0p11 /dev/block/param
 
 # Permissions for bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
@@ -292,17 +263,6 @@ on boot
     chown root shell /dev/tspdrv
 
     mount debugfs /sys/kernel/debug /sys/kernel/debug
-    chown system system /sys/class/backlight/panel/brightness
-    exec /system/bin/sh /system/etc/set_show_navi.sh
-
-    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO0
-    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO1
-    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO2
-    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO3
-    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO4
-    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO5
-    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/TxCurrent
-    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/Squelch
 
 # required so RIL can open kernel RPC drivers
     chmod 0660 /dev/bcm_rpc
@@ -328,6 +288,9 @@ on boot
     chmod 0660 /dev/block/mmcblk0
     chown system system /dev/mem
 
+# 1280x720 TV for now
+    setprop brcm.hwc.external-res 1280x720
+
 # security driver
     chmod 0660 /dev/bcm_security
     chown radio root /dev/bcm_security
@@ -342,10 +305,6 @@ on boot
     setprop status.battery.level 10
     setprop status.battery.level_raw  100
     setprop status.battery.level_scale 10
-
-# Set permission for Widevine DRM temporarily
-    chmod 0777 /dev/s5p-smem
-    rm /data/app/tlcd_sock
 
 # phone
     setprop ro.telephony.call_ring.multiple 0
@@ -367,26 +326,27 @@ on boot
 
     chown gps system /dev/ttyS3
     chmod 0770 /dev/ttyS3
-    chown gps system /system/bin/glgps
-    chown gps system /system/etc/gps/glconfig.xml
-    chmod 0660 /system/etc/gps/glconfig.xml
-    chown gps system /system/etc/gps
-
-    chmod 0770 /system/etc/gps
-    chmod 0770 /system/bin/glgps
-
-    chown gps system /system/bin/gpslogd
-    chmod 0777 /system/bin/gpslogd
 
     class_start default
 
 # allow user space (atx) access to kernel pm debug
     chown system system /sys/module/capri_pm_dbg/parameters/debug
 
-#for fm radio    
-    copy /system/etc/local.prop /data/local.prop
-    chown system bluetooth /data/local.prop
-    chmod 0660 /data/local.prop
+    chown system system /dev/i2c-6
+    chmod 0660 /dev/i2c-6
+
+    chown root system /dev/proximity
+    chmod 0660 /dev/proximity
+
+    chown system system /sys/class/input/input2/enable
+    chown system system /sys/class/input/input2/poll_delay
+    chmod 0660 /sys/class/input/input2/enable
+    chmod 0660 /sys/class/input/input2/poll_delay
+
+    chown system system /sys/class/input/input3/enable
+    chown system system /sys/class/input/input3/poll_delay
+    chmod 0660 /sys/class/input/input3/enable
+    chmod 0660 /sys/class/input/input3/poll_delay
 
 # SEC_PRODUCT_FEATURE_COMMON_USE_MULTISIM
     setprop ro.multisim.simslotcount 2
@@ -413,52 +373,6 @@ on boot
     chown system radio /sys/class/audio/earjack/state
     chown media system /sys/class/audio/earjack/reselect_jack
 
-# Battery node
-    chown system radio /sys/class/power_supply/battery/batt_charging_source
-    chown system radio /sys/class/power_supply/battery/batt_error_test
-    chown system radio /sys/class/power_supply/battery/batt_lp_charging
-    chown system radio /sys/class/power_supply/battery/batt_read_adj_soc
-    chown system radio /sys/class/power_supply/battery/batt_read_raw_soc
-    chown system radio /sys/class/power_supply/battery/batt_reset_soc
-    chown system radio /sys/class/power_supply/battery/batt_slate_mode
-    chown system radio /sys/class/power_supply/battery/batt_temp_adc
-    chown system radio /sys/class/power_supply/battery/batt_temp_adc_aver
-    chown system radio /sys/class/power_supply/battery/batt_temp_adc_cal
-    chown system radio /sys/class/power_supply/battery/batt_temp_aver
-    chown system radio /sys/class/power_supply/battery/batt_type
-    chown system radio /sys/class/power_supply/battery/batt_vf_adc
-    chown system radio /sys/class/power_supply/battery/batt_vfocv
-    chown system radio /sys/class/power_supply/battery/batt_vol_adc
-    chown system radio /sys/class/power_supply/battery/batt_vol_adc_aver
-    chown system radio /sys/class/power_supply/battery/batt_vol_adc_cal
-    chown system radio /sys/class/power_supply/battery/batt_vol_aver
-    chown system radio /sys/class/power_supply/battery/factory_mode
-    chown system radio /sys/class/power_supply/battery/siop_activated
-    chown system radio /sys/class/power_supply/battery/siop_level
-    chown system radio /sys/class/power_supply/battery/update
-    chown system radio /sys/class/power_supply/battery/wc_status
-    chown system radio /sys/class/power_supply/battery/wpc_pin_state
-    chown system radio /sys/class/power_supply/fuelgauge/fg_curr_ua
-
-# CTIA event
-    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/call
-    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/video
-    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/music
-    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/browser
-    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/hotspot
-    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/camera
-    chown system radio /sys/class/power_supply/battery/talk_wcdma
-    chown system radio /sys/class/power_supply/battery/talk_gsm
-    chown system radio /sys/class/power_supply/battery/call
-    chown system radio /sys/class/power_supply/battery/data_call
-    chown gps radio /sys/class/power_supply/battery/gps
-    chown system radio /sys/class/power_supply/battery/wifi
-    chown system radio /sys/class/power_supply/battery/lte
-
-# Thermistor node
-    chown radio system /sys/devices/platform/sec-thermistor/temp_adc
-    chown radio system /sys/devices/platform/sec-thermistor/temperature
-
 # Permissions for touch
     chown system radio /sys/class/sec/tsp/cmd
 
@@ -481,12 +395,6 @@ on boot
 # Switch Device
     chown system radio /sys/class/sec/switch/adc
 
-# Permissions for SVC LED
-    chown system system /sys/class/sec/led/led_pattern
-    chown system system /sys/class/sec/led/led_blink
-    chown system system /sys/class/sec/led/led_br_lev
-    chown system system /sys/class/sec/led/led_lowpower
-
 # Voice Solution
     copy /system/etc/DiamondVoice_NB.txt /data/DiamondVoice_NB.txt
     chmod 0777 /data/DiamondVoice_NB.txt
@@ -502,21 +410,8 @@ on boot
     chmod 0777 /data/DiamondVoice_SF_Filter_WB.txt
     insmod /system/lib/modules/VoiceSolution.ko
 
-# wifi display
-    write /proc/sys/net/core/rmem_max   1048576
-    write /proc/sys/net/core/wmem_max   2097152
-
 # permission for HDMI audio path
     chown media audio /sys/class/hdmi_audio/hdmi_audio/hdmi_audio_set_ext
-
-# icd
-    exec icd_check
-    chown system system /dev/icd
-    chmod 0644 /dev/icd
-    write /dev/icdr 0
-    chown system system /dev/icdr
-    chmod 0644 /dev/icdr
-    chown system system /dev/tzic
 
 # HDCP 2.x
     mkdir /data/system/hdcp2 0775 system system
@@ -526,72 +421,13 @@ on boot
     chmod 0644 /efs/h2k.dat
     mkdir /data/misc/radio/hatp 0775 radio system
 
-# serial_no permission change
-    touch /efs/FactoryApp/serial_no
-    chmod 0770 /efs/FactoryApp/serial_no
-    chown system system /efs/FactoryApp/serial_no
-
-# This property trigger has added to imitiate the previous behavior of "adb root".
-# The adb gadget driver used to reset the USB bus when the adbd daemon exited,
-# and the host side adb relied on this behavior to force it to reconnect with the
-# new adbd instance after init relaunches it. So now we force the USB bus to reset
-# here when adbd sets the service.adb.root property to 1.  We also restart adbd here
-# rather than waiting for init to notice its death and restarting it so the timing
-# of USB resetting and adb restarting more closely matches the previous behavior.
-on property:service.adb.root=1
-    write /sys/class/android_usb/android0/enable 0
-    restart adbd
-    write /sys/class/android_usb/android0/enable 1
-
-service powersnd /system/bin/samsungpowersoundplay
-    class main
-    user media
-    group system
-    disabled
-    oneshot
-
-# Vibetonz
-service immvibed /system/bin/immvibed
-    class core
-    user shell
-    group shell
-    oneshot
-
-# fusewrapped external sdcard daemon running as media_rw (1023)
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled
-
-on property:ro.dumpstate.dmesg=1
-    write /proc/sys/kernel/dmesg_restrict 0
-
-# icd
-service icd /system/bin/icd
-    class main
-    user system
-    group system log
-    onrestart exec icd_check
-    oneshot
-
-on property:init.svc.media=restarting
-    exec icd_check
-    start icd
-
 on fs
     mount_all /fstab.capri_ss_crater
     setprop ro.crypto.fuse_sdcard true
 
-    # don't require sim
-    setprop keyguard.no_require_sim 1
-
 # For NV Read/Write
     chown radio system /dev/block/mmcblk0p1
     chmod 0770 /dev/block/mmcblk0p1
-
-    chmod 6755 /system/xbin/su
-
-# Permissions for System Server and daemons.
-    chown system system /sys/class/backlight/capri_bl/brightness
 
 # Permissions for DVFS
     chown radio system /sys/power/cpufreq_table
@@ -600,11 +436,6 @@ on fs
     chmod 0660 /sys/power/cpufreq_table
     chmod 0660 /sys/power/cpufreq_max_limit
     chmod 0660 /sys/power/cpufreq_min_limit
-
-# MTP device permission
-    chmod 0660 /dev/usb_mtp_gadget
-    chown system system /dev/usb_mtp_gadget
-    chmod 0220 /sys/class/camera/rear/rear_flash
 
 # Permissions for LCD
     chown system system /sys/class/backlight/panel/auto_brightness
@@ -624,19 +455,6 @@ on post-fs
     chown radio system /efs
     chmod 0771 /efs
 
-on property:persist.sys.storage_preload=1
-    mount ext4 /dev/block/mmcblk0p20 /preload nosuid nodev noatime wait ro
-    setprop storage.preload.complete 1
-
-on property:persist.sys.storage_preload=0
-    exec /system/bin/umount /preload
-
-## Daemon processes to be run by init.
-##
-
-on property:ro.debuggable=1
-    start console
-
 # create filesystem if necessary
 service setup_fs /system/bin/setup_fs \
             /dev/block/mmcblk0p17 \
@@ -648,9 +466,10 @@ service setup_fs /system/bin/setup_fs \
 
 # at_distributor for making file for factory.
 service at_distributor /system/bin/at_distributor
-    class main
-    user root
-    group radio misc log
+	class main
+	user root
+	group root
+	oneshot
 
 # geomagneticd
 service geomagneticd /system/bin/geomagneticd
@@ -718,38 +537,18 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-# When the default SIM for data connections is updated,
-# also update the DUN AT channel with the default SIM.
-on property:persist.sys.dataprefer.simid=0
-    write /data/atx/setsim.txt at*msetsim=1
-    start set_simid
+# Bluetooth PAN
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+	class main
+	disabled
+	oneshot
 
-# When the default SIM for data connections is updated,
-# also update the DUN AT channel with the default SIM.
-on property:persist.sys.dataprefer.simid=1
-    write /data/atx/setsim.txt at*msetsim=2
-    start set_simid
-
-# TVout
-service TvoutService_C /system/bin/bintvoutservice
-     class main
-     user system
-     group graphics
-on property:ro.tvout.enable=false
-    stop TvoutService_C
-
-# for WiFi MFG(TestMode)
-service mfgloader /system/bin/mfgloader
+service iprenew_bt-pan /system/bin/dhcpcd -n
     class main
     disabled
     oneshot
 
-service wlandutservice /system/bin/wlandutservice
-    class main
-    user system
-    group wifi net_raw net_admin system inet
-    disabled
-    oneshot
+# TODO: btld is only used for FM
 
 service macloader /system/bin/macloader
     class main
@@ -768,7 +567,7 @@ service gpsd /system/bin/glgps -c /system/etc/gps/glconfig.xml
     group system sdcard_rw inet root radio wifi
 
 # Run ATX over UART
-service console /system/bin/atx -l -d
+service console_atx /system/bin/atx -l -d
     class main
     console
     user system
@@ -787,19 +586,6 @@ service tvserver /system/bin/tvserver
 #
 # disabled
 
-# Run usb_portd to automatically launch atx when USB configuration changes.
-service usb_portd /system/bin/usb_portd
-    class main
-    user system
-    group input vpn net_admin net_raw radio system sdcard_rw log mount
-
-# Run usbdev_mode to set USB configuration from uboot if bootargs usbdev_mode option is set.
-service usbdev_mode /system/bin/usbdev_mode
-    class main
-    oneshot
-    user system
-    group radio system
-
 # Run bkmgrd automatically on startup
 service bkmgrd /system/bin/bkmgrd
     class main
@@ -813,40 +599,20 @@ service vclmk /system/bin/vclmk -s
     user system
     group system root audio graphics
 
-# When the default SIM for data connections is updated,
-# also update the DUN AT channel with the default SIM.
-service set_simid /system/bin/atx --fordev=ACM --runcmd=/data/atx/setsim.txt
-    disabled
-    oneshot
-    user system
-    group input vpn net_admin net_raw radio system sdcard_rw log mount
-
 # Indicate boot complete to PM to complete PM initialization
 on property:dev.bootcomplete=1
     write /sys/module/capri_pwr_mgr/parameters/pm_late_init 1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor ondemand
     write /sys/block/mmcblk0/queue/scheduler cfq
 
-# For power off charging boot mode
-on charger
-    mount ext4 /dev/block/platform/sdhci.1/by-name/system /system wait
-    mount ext4 /dev/block/platform/sdhci.1/by-name/userdata /data wait noatime nosuid nodev
-    class_start bcm_charger
-    start console
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18D1
-    write /sys/class/android_usb/android0/idProduct e688
-    write /sys/class/android_usb/android0/functions mtp,adb
-    write /sys/class/android_usb/android0/enable 1
-    write /sys/class/android_usb/android0/iManufacturer $ro.product.manufacturer
-    write /sys/class/android_usb/android0/iProduct $ro.product.model
-    write /sys/class/android_usb/android0/iSerial $ro.serialno
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
-    start adbd
-    
-# Force USB Charging 500mA
-    write /sys/devices/platform/bcmpmu_chrgr/icc_fc 500
-    write /sys/devices/platform/bcmpmu_chrgr/usb_en 1
+# Vibetonz
+service immvibed /system/bin/immvibed
+    class core
+    user shell
+    group shell
+    oneshot
 
-service charging /system/bin/poweroff_charging
-  class charger
+# fusewrapped external sdcard daemon running as media_rw (1023)
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
