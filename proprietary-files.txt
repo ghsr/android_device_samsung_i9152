@@ -62,7 +62,6 @@ lib/libcate_rpc.so
 lib/libcontainers.so
 lib/libdebug_sym.so
 lib/libdispmanx.so
-lib/libhdcp.so
 lib/libhdcp2.so
 lib/libHDCPKeyManager.so
 lib/libhdmiaudio.so
