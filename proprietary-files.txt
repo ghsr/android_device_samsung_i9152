@@ -61,6 +61,7 @@ lib/libcapi2.so
 lib/libcate_rpc.so
 lib/libcontainers.so
 lib/libdebug_sym.so
+lib/lib_DNSe_NRSS_ver224c.so
 lib/libdispmanx.so
 lib/libhdcp2.so
 lib/libHDCPKeyManager.so
@@ -74,6 +75,7 @@ lib/libomxmmal.so
 lib/libril.so
 lib/librpc.so
 lib/libsamsungRecord.so
+lib/libsamsungRecord_ns.so
 lib/libsamsungSoundbooster.so
 lib/libseckeyprov.so
 lib/libsecnativefeature.so
