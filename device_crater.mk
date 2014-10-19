@@ -95,7 +95,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	wifi.interface=wlan0 \
 	mobiledata.interfaces=rmnet0 \
 	ro.telephony.ril_class=SamsungBCMRIL \
-#	persist.radio.multisim.config=dsds \
+	persist.radio.multisim.config=dsds \
 #	ro.telephony.call_ring=0 \
 
 # Enable Google-specific location features,
