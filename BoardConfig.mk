@@ -92,6 +92,9 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 # Healthd
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.capri
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := crater,craterxx,i9152,I9152,GT-I9152
+
 # CMHW
 BOARD_HARDWARE_CLASS := device/samsung/crater/cmhw/
 
