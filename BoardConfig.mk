@@ -94,7 +94,7 @@ BOARD_HAL_STATIC_LIBRARIES := libhealthd.capri
 TARGET_OTA_ASSERT_DEVICE := crater,craterxx,i9152,I9152,GT-I9152
 
 # CMHW
-BOARD_HARDWARE_CLASS := device/samsung/crater/cmhw/
+BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/crater/cmhw/
 
 # GPS
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/crater/include
