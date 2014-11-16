@@ -10,20 +10,20 @@ key 9     8
 key 10    9
 key 11    0
 key 158   BACK
-key 139   MENU              
+key 139   MENU
 key 127   SEARCH
 key 217   RECENTAPPS
 key 228   POUND
 key 227   STAR
-key 352   DPAD_CENTER       
+key 352   DPAD_CENTER
 key 108   DPAD_DOWN
 key 103   DPAD_UP
-key 102   HOME              WAKE
+key 102   HOME
 key 105   DPAD_LEFT
 key 106   DPAD_RIGHT
-key 115   VOLUME_UP         
-key 114   VOLUME_DOWN       
-key 116   POWER             WAKE
+key 115   VOLUME_UP
+key 114   VOLUME_DOWN
+key 116   POWER
 key 212   CAMERA
 
 key 16    Q
@@ -52,7 +52,7 @@ key 38    L
 key 39    SEMICOLON
 key 40    APOSTROPHE
 key 14    DEL
-        
+
 key 44    Z
 key 45    X
 key 46    C
@@ -64,7 +64,7 @@ key 51    COMMA
 key 52    PERIOD
 key 53    SLASH
 key 28    ENTER
-        
+
 key 56    ALT_LEFT
 key 100   ALT_RIGHT
 key 42    SHIFT_LEFT
@@ -72,14 +72,14 @@ key 54    SHIFT_RIGHT
 key 15    TAB
 key 57    SPACE
 key 150   EXPLORER
-key 155   CUST2        
-key 442   CHATON 
+key 155   CUST2
+key 442   CHATON
 key 373   SYM
 key 12    MINUS
 key 13    EQUALS
 key 215   AT
-key 207   MUSIC 
+key 207   MUSIC
 
 # On an AT keyboard: ESC, F10
-key 1     BACK              WAKE_DROPPED
-key 68    MENU              WAKE_DROPPED
+key 1     BACK
+key 68    MENU
