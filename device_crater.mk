@@ -19,7 +19,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/ramdisk/init.bcm281x5.usb.rc:root/init.bcm281x5.usb.rc \
 	$(LOCAL_PATH)/ramdisk/init.log.rc:root/init.log.rc \
 	$(LOCAL_PATH)/ramdisk/init.recovery.capri_ss_crater.rc:root/init.recovery.capri_ss_crater.rc \
-	$(LOCAL_PATH)/ramdisk/lpm.rc:root/lpm.rc \
 	$(LOCAL_PATH)/ramdisk/ueventd.capri_ss_crater.rc:root/ueventd.capri_ss_crater.rc \
 	$(LOCAL_PATH)/ramdisk/fstab.capri_ss_crater:root/fstab.capri_ss_crater \
 
@@ -59,7 +58,6 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-	charger \
 	charger_res_images
 
 # These are the hardware-specific features
