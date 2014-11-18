@@ -24,6 +24,9 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/ramdisk/fstab.capri_ss_crater:root/fstab.capri_ss_crater \
 
 PRODUCT_COPY_FILES += \
+	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
 	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
 
 # Prebuilt kl keymaps
