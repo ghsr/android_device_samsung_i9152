@@ -45,11 +45,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory
 
-# Misc other modules
+# Audio modules
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
 	audio.usb.default \
 	audio_policy.capri
+
+USE_CUSTOM_AUDIO_POLICY := 1
 
 # Device-specific packages
 PRODUCT_PACKAGES += \
