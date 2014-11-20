@@ -48,8 +48,7 @@ PRODUCT_PACKAGES += \
 # Audio modules
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
-	audio.usb.default \
-	audio_policy.capri
+	audio.usb.default
 
 USE_CUSTOM_AUDIO_POLICY := 1
 
