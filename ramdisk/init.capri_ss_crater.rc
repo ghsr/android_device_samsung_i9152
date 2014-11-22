@@ -305,9 +305,6 @@ on boot
     setprop status.battery.level_raw  100
     setprop status.battery.level_scale 10
 
-# phone
-    setprop ro.telephony.call_ring.multiple 0
-
 # create data/gps for GPS daemon
     mkdir /data/gps 0770 gps system
     chown gps system /data/gps
