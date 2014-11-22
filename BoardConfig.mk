@@ -89,9 +89,6 @@ BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charg
 # RIL
 BOARD_RIL_CLASS := ../../../device/samsung/crater/ril/
 
-# External apps on SD
-TARGET_EXTERNAL_APPS = sdcard1
-
 # Recovery
 TARGET_RECOVERY_FSTAB := device/samsung/crater/ramdisk/fstab.capri_ss_crater
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
