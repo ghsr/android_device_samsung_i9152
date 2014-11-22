@@ -48,7 +48,8 @@ PRODUCT_PACKAGES += \
 # Audio modules
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
-	audio.usb.default
+	audio.usb.default \
+	audio.r_submix.default
 
 USE_CUSTOM_AUDIO_POLICY := 1
 
