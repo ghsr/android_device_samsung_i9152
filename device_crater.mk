@@ -2,9 +2,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 LOCAL_PATH := device/samsung/crater
 
-# The gps config appropriate for this device
-$(call inherit-product, device/common/gps/gps_us_supl.mk)
-
 $(call inherit-product-if-exists, vendor/samsung/crater/crater-vendor.mk)
 
 # Device uses high-density artwork where available
