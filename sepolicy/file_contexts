@@ -24,6 +24,8 @@
 /dev/bcm_log                                        u:object_r:radio_device:s0
 /dev/block/mmcblk0p1                                u:object_r:radio_device:s0
 
+/dev/block/mmcblk1p1                                u:object_r:mmc_block_device:s0
+
 /dev/block/mmcblk0p15                               u:object_r:cam_block_device:s0
 
 /dev/socket/rild1                                   u:object_r:rild_socket:s0
