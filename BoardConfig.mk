@@ -1,7 +1,7 @@
 USE_CAMERA_STUB := true
 
 # Inherit from the proprietary version
--include vendor/samsung/crater/BoardConfigVendor.mk
+-include vendor/samsung/i9152/BoardConfigVendor.mk
 
 TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
@@ -37,15 +37,15 @@ EXTENDED_FONT_FOOTPRINT := true
 
 # Kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_crater_defconfig
-TARGET_KERNEL_SOURCE := kernel/samsung/crater
+TARGET_KERNEL_SOURCE := kernel/samsung/i9152
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/crater/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/samsung/crater/configs/libbt_vndcfg.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/i9152/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/samsung/i9152/configs/libbt_vndcfg.txt
 
 # Connectivity - Wi-Fi
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
@@ -73,7 +73,7 @@ BOARD_USES_SKTEXTBOX := true
 
 # Hardware rendering
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/samsung/crater/configs/egl.cfg
+BOARD_EGL_CFG := device/samsung/i9152/configs/egl.cfg
 BOARD_USE_MHEAP_SCREENSHOT := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
 TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
@@ -88,10 +88,10 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/samsung/crater/ril/
+BOARD_RIL_CLASS := ../../../device/samsung/i9152/ril/
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/samsung/crater/ramdisk/fstab.capri_ss_crater
+TARGET_RECOVERY_FSTAB := device/samsung/i9152/ramdisk/fstab.capri_ss_crater
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 
@@ -102,10 +102,10 @@ BOARD_HAL_STATIC_LIBRARIES := libhealthd.capri
 TARGET_OTA_ASSERT_DEVICE := crater,craterxx,i9152,I9152,GT-I9152
 
 # CMHW
-BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/crater/cmhw/
+BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/i9152/cmhw/
 
 # GPS
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/crater/include
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/i9152/include
  
 # Compat
 TARGET_USES_LOGD := false
@@ -115,7 +115,7 @@ MALLOC_IMPL := dlmalloc
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
-    device/samsung/crater/sepolicy
+    device/samsung/i9152/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     file_contexts \
