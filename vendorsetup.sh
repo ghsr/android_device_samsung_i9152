@@ -1,1 +1,1 @@
-add_lunch_combo cm_crater-userdebug
+add_lunch_combo cm_i9152-userdebug

@@ -1,11 +1,11 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-LOCAL_PATH := device/samsung/crater
+LOCAL_PATH := device/samsung/i9152
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
-$(call inherit-product-if-exists, vendor/samsung/crater/crater-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/i9152/i9152-vendor.mk)
 
 # Device uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
@@ -131,5 +131,5 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-PRODUCT_NAME := full_crater
-PRODUCT_DEVICE := crater
+PRODUCT_NAME := full_i9152
+PRODUCT_DEVICE := i9152
