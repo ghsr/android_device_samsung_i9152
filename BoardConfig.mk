@@ -17,16 +17,11 @@ BOARD_KERNEL_CMDLINE := console=ttyS0,115200n8 mem=832M@0xA2000000 androidboot.c
 BOARD_KERNEL_BASE := 0xa2000000
 BOARD_KERNEL_PAGESIZE := 4096
 
+# File system
 TARGET_USERIMAGES_USE_EXT4 := true
-
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
-
-# This is actually 1610612736, but reducing to 1090 MB to support users using repartition.
-# Feel free to increase when needed
-# See: http://forum.xda-developers.com/showpost.php?p=55293011&postcount=1
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1142947840
-
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 4404019200
 BOARD_CACHEIMAGE_PARTITION_SIZE := 1073741824
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -36,7 +31,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 EXTENDED_FONT_FOOTPRINT := true
 
 # Kernel
-TARGET_KERNEL_CONFIG := cyanogenmod_crater_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_i9152_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/i9152
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -48,21 +43,21 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/i9152/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/samsung/i9152/configs/libbt_vndcfg.txt
 
 # Connectivity - Wi-Fi
-BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-WPA_SUPPLICANT_VERSION      := VER_0_8_X
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_HOSTAPD_DRIVER        := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE           := bcmdhd
-BOARD_WLAN_DEVICE_REV       := bcm4334
-WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/dhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA     := "/system/etc/wifi/bcmdhd_sta.bin"
-WIFI_DRIVER_FW_PATH_AP      := "/system/etc/wifi/bcmdhd_apsta.bin"
-WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/dhd.ko"
-WIFI_DRIVER_MODULE_NAME     := "dhd"
-WIFI_DRIVER_MODULE_ARG      := "firmware_path=/system/etc/wifi/bcmdhd_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
-WIFI_DRIVER_MODULE_AP_ARG   := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
-WIFI_BAND                   := 802_11_ABG
+BOARD_WLAN_DEVICE                   := bcmdhd
+BOARD_WLAN_DEVICE_REV               := bcm4334
+WPA_SUPPLICANT_VERSION              := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER         := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB    := lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_DRIVER                := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB           := lib_driver_cmd_bcmdhd
+WIFI_DRIVER_FW_PATH_PARAM           := "/sys/module/dhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA             := "/system/etc/wifi/bcmdhd_sta.bin"
+WIFI_DRIVER_FW_PATH_AP              := "/system/etc/wifi/bcmdhd_apsta.bin"
+WIFI_DRIVER_MODULE_PATH             := "/system/lib/modules/dhd.ko"
+WIFI_DRIVER_MODULE_NAME             := "dhd"
+WIFI_DRIVER_MODULE_ARG              := "firmware_path=/system/etc/wifi/bcmdhd_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
+WIFI_DRIVER_MODULE_AP_ARG           := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
+WIFI_BAND                           := 802_11_ABG
 
 # Wi-Fi Tethering
 BOARD_HAVE_SAMSUNG_WIFI := true
@@ -137,6 +132,7 @@ BOARD_SEPOLICY_UNION += \
 
 # Disable adb RSA security and enable adb root when debug
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
-ADDITIONAL_DEFAULT_PROPERTIES := ro.adb.secure=0	\
-	ro.secure=0
+ADDITIONAL_DEFAULT_PROPERTIES := \
+    ro.adb.secure=0 \
+    ro.secure=0
 endif
