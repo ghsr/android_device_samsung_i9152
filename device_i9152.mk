@@ -131,6 +131,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp \
 	ro.zygote.disable_gl_preload=true
 
+# Media
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.media.use-awesome=true
+
 # KSM
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ksm.default=1
