@@ -125,6 +125,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp \
 	ro.zygote.disable_gl_preload=true
 
+# Camera
+PRODUCT_PROPERTY_OVERRIDES += \
+	camera2.portability.force_api=1
+
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.media.use-awesome=true
