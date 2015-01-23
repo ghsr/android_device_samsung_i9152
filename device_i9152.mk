@@ -61,7 +61,6 @@ PRODUCT_COPY_FILES += \
 # Device-specific packages
 PRODUCT_PACKAGES += \
 	SamsungServiceMode \
-	Torch
 
 # Charger
 PRODUCT_PACKAGES += \
