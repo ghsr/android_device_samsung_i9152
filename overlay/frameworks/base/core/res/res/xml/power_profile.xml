@@ -35,11 +35,12 @@
         <value>3.4</value>
     </array>
     <array name="cpu.speeds">
-        <value>100000</value>
-        <value>200000</value>
-        <value>400000</value>
+        <value>312000</value>
+        <value>600000</value>
         <value>800000</value>
-        <value>1000000</value>
+        <value>1200000</value>
+        <value>1300000</value>
+        <value>1400000</value>
     </array>
     <item name="cpu.idle">1.4</item>
     <item name="cpu.awake">44</item>
