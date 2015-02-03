@@ -17,7 +17,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/ramdisk/init.log.rc:root/init.log.rc \
 	$(LOCAL_PATH)/ramdisk/init.recovery.capri_ss_crater.rc:root/init.recovery.capri_ss_crater.rc \
 	$(LOCAL_PATH)/ramdisk/ueventd.capri_ss_crater.rc:root/ueventd.capri_ss_crater.rc \
-	$(LOCAL_PATH)/ramdisk/fstab.capri_ss_crater:root/fstab.capri_ss_crater \
+	$(LOCAL_PATH)/ramdisk/fstab.capri_ss_crater:root/fstab.capri_ss_crater
 
 # Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
@@ -50,17 +50,17 @@ USE_CUSTOM_AUDIO_POLICY := 1
 
 # Media
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
+	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml
 
 PRODUCT_COPY_FILES += \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
-	frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml
 
 # Device-specific packages
 PRODUCT_PACKAGES += \
-	SamsungServiceMode \
+	SamsungServiceMode
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -120,11 +120,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.kernel.android.checkjni=0 \
 	dalvik.vm.checkjni=false
 
-# Set default USB interface
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp \
-	ro.zygote.disable_gl_preload=true
-
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
 	camera2.portability.force_api=1
@@ -135,7 +130,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # KSM
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ksm.default=1
+	ro.ksm.default=1
+
+# Set default USB interface
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+	persist.sys.usb.config=mtp \
+	ro.zygote.disable_gl_preload=true
 
 # Dalvik heap config
 include frameworks/native/build/phone-hdpi-512-dalvik-heap.mk
