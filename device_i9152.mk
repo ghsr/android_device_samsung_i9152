@@ -1,5 +1,3 @@
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
 LOCAL_PATH := device/samsung/i9152
 
 $(call inherit-product-if-exists, vendor/samsung/i9152/i9152-vendor.mk)
