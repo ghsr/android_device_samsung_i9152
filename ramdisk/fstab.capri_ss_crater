@@ -14,4 +14,4 @@
 /dev/block/mmcblk0p7                     /modem         emmc      defaults                                                                          defaults
 
 # vold-managed volumes
-/devices/platform/sdhci.3/mmc_host/mmc2  auto           auto      defaults                                                                          voldmanaged=sdcard1:auto,noemulatedsd
+/devices/platform/sdhci.3/mmc_host/mmc2* auto           auto      defaults                                                                          voldmanaged=sdcard1:auto,noemulatedsd
