@@ -1,6 +1,6 @@
 LOCAL_PATH := device/samsung/i9152
 
-$(call inherit-product-if-exists, vendor/samsung/i9152/i9152-vendor.mk)
+$(call inherit-product, vendor/samsung/i9152/i9152-vendor.mk)
 
 # Device uses high-density artwork where available
 PRODUCT_LOCALES += hdpi
