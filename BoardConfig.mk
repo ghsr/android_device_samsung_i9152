@@ -120,6 +120,7 @@ BOARD_SEPOLICY_UNION += \
     geomagneticd.te \
     gpsd.te \
     init.te \
+    install_recovery.te \
     immvibed.te \
     kernel.te \
     macloader.te \
@@ -127,7 +128,9 @@ BOARD_SEPOLICY_UNION += \
     shell.te \
     system_server.te \
     tvserver.te \
-    vclmk.te
+    untrusted_app.te \
+    vclmk.te \
+    vold.te
 
 # Disable adb RSA security and enable adb root when debug
 ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))

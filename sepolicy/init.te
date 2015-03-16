@@ -1,5 +1,5 @@
 # chmod in init.capri_ss_crater.rc (for bkmgrd)
-allow init block_device:blk_file setattr;
+allow init mmc_block_device:blk_file setattr;
 allow init radio_device:blk_file setattr;
 
 # insmod
