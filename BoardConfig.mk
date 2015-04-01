@@ -132,10 +132,3 @@ BOARD_SEPOLICY_UNION += \
     untrusted_app.te \
     vclmk.te \
     vold.te
-
-# Disable adb RSA security and enable adb root when debug
-ifneq (,$(filter userdebug eng,$(TARGET_BUILD_VARIANT)))
-ADDITIONAL_DEFAULT_PROPERTIES := \
-    ro.adb.secure=0 \
-    ro.secure=0
-endif
