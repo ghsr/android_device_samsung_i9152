@@ -4,10 +4,6 @@ $(call inherit-product, vendor/samsung/i9152/i9152-vendor.mk)
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-# Screen density
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     setup_fs
