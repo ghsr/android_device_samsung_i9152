@@ -6,8 +6,10 @@ on early-init
 
     mkdir /efs 0771 radio system
 
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+
 on init
-# Videocore
+    # Videocore
     chmod 0660 /proc/vc-dnfo
     write /proc/vc-dnfo "width 540"
     write /proc/vc-dnfo "height 960"
@@ -29,37 +31,31 @@ on init
     chmod 1775 /tmp
 
     mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage 0550 system sdcard_r
     mkdir /storage/emulated 0555 root root
-    mkdir /storage/sdcard1 0775 system system
 
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export SECONDARY_STORAGE /storage/sdcard1
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
 
-# for backwards compatibility
+    # Support legacy paths
     symlink /storage/emulated/legacy /sdcard
     symlink /storage/emulated/legacy /mnt/sdcard
     symlink /storage/emulated/legacy /storage/sdcard0
     symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    mkdir   /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir   /storage/sdcard1 0700 root root
-    symlink /storage/sdcard1 /external_sd
-    symlink /storage/sdcard1 /mnt/external_sd
 
-    mkdir /preload 0771 system system 
+    # Secondary storage
+    mkdir /storage/sdcard1 0700 root root
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
 
-# Vibetonz
+    # Vibetonz
     export VIBE_PIPE_PATH /dev/pipes
     mkdir /dev/pipes 0771 shell shell
 
-    chown system system /sys/vibrator/pwm_val
-
-    symlink /efs /factory
-
     symlink /dev/block/mmcblk0p11 /dev/block/param
-    
-# We will create our own ril-daemon service with different perm and sockets
+
+    # We will create our own ril-daemon service with different perm
     stop ril-daemon
 
 on post-fs-data
@@ -70,19 +66,20 @@ on post-fs-data
 # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
 
-# for wifi
+    # for wifi
     mkdir /efs/wifi 0775 radio system
     mkdir /efs/bluetooth 0775 radio system
     mkdir /efs/imei 0775 radio system
     mkdir /data/misc/wifi 0775 wifi system
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0775 dhcp dhcp
+    mkdir /system/etc/wifi 0775 wifi wifi
     chown system system /efs/wifi/.mac.info
     chmod 0664 /efs/wifi/.mac.info
     chown system system /efs/imei/.nvmac.info
     chmod 0664 /efs/imei/.nvmac.info
 
-# for TRP/TIS
+    # for TRP/TIS
     write /data/.psm.info 1
     chown system root /data/.psm.info
     chmod 0660 /data/.psm.info
@@ -116,7 +113,7 @@ on boot
     write /sys/block/mmcblk0/queue/scheduler noop
 # SISO-ANDR_PERF :: END
 
-# Permissions for bluetooth
+# Permissions for Bluetooth
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth net_bt_stack ro.bt.bdaddr_path
     chown bluetooth net_bt_stack /dev/ttyS2
@@ -125,7 +122,11 @@ on boot
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/state
     chown bluetooth net_bt_stack /sys/class/rfkill/rfkill0/type
 
-# permissions for sensors (accelerometer & magnetic & proximity)
+# Permissions for sensors (accelerometer & magnetic & proximity)
+
+    chown root system /dev/mpu6k
+    chmod 0660 /dev/mpu6k
+
     chown root system /dev/proximity
     chmod 0660 /dev/proximity
     chown system system /sys/class/input/input0/enable
@@ -136,9 +137,7 @@ on boot
     chown system system /sys/class/input/input1/poll_delay
     chmod 0660 /sys/class/input/input1/enable
     chmod 0660 /sys/class/input/input1/poll_delay
-    
-    chown root system /dev/mpu6k
-    chmod 0660 /dev/mpu6k
+
     chown system input /sys/class/input/input6/acc_enable
     chown system input /sys/class/input/input6/acc_delay
     chown system input /sys/class/input/input6/gyro_enable
@@ -262,7 +261,15 @@ on boot
     chmod 0660 /dev/tspdrv
     chown root shell /dev/tspdrv
 
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
+    # USB
+    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO0
+    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO1
+    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO2
+    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO3
+    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO4
+    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/USB_MDIO5
+    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/TxCurrent
+    chown system system /sys/devices/platform/bcm_hsotgctrl_phy_mdio/Squelch
 
 # required so RIL can open kernel RPC drivers
     chmod 0660 /dev/bcm_rpc
@@ -272,9 +279,6 @@ on boot
 
     chmod 0660 /dev/bcm_atc
     chown shell system /dev/bcm_atc
-    mkdir /data/atx
-    chown system system /data/atx
-    chmod 0771 /data/atx
     chown system system /dev/bcm_log
     chmod 0660 /dev/bcm_log
     chown system system /dev/bcm_audio_log
@@ -305,7 +309,7 @@ on boot
     setprop status.battery.level_raw  100
     setprop status.battery.level_scale 10
 
-# create data/gps for GPS daemon
+# create data/gps for GPS demon
     mkdir /data/gps 0770 gps system
     chown gps system /data/gps
     chmod 0770 /data/gps
@@ -346,6 +350,10 @@ on boot
 
 # SEC_PRODUCT_FEATURE_COMMON_USE_MULTISIM
     setprop ro.multisim.simslotcount 2
+
+on fs
+    mount_all /fstab.capri_ss_crater
+    setprop ro.crypto.fuse_sdcard true
 
 # for multi csc
     chown radio radio /proc/LinuStoreIII/efs_info
@@ -429,10 +437,6 @@ on charger
     write /proc/vc/display/vchiq_control "earlysuspctrl "
     write /proc/vc/display/vchiq_control "autosuspend "
 
-on fs
-    mount_all /fstab.capri_ss_crater
-    setprop ro.crypto.fuse_sdcard true
-
 # For NV Read/Write
     chown radio system /dev/block/mmcblk0p1
     chmod 0770 /dev/block/mmcblk0p1
@@ -473,6 +477,11 @@ service setup_fs /system/bin/setup_fs \
     group root
     oneshot
 
+service charger /sbin/healthd -c
+    class charger
+    critical
+    seclabel u:r:healthd:s0
+
 # geomagneticd
 service geomagneticd /system/bin/geomagneticd
     class main
@@ -487,22 +496,25 @@ service capri-ril-daemon /system/bin/rild
     user root
     group radio cache inet misc audio system sdcard_rw log sdcard_r
 
-service charger /sbin/healthd -c
-    class charger
-    critical
-    seclabel u:r:healthd:s0
-
-# create virtual SD card at /storage/sdcard, based on the /data/media directory
-# daemon will drop to user/group system/media_rw after initializing
-# underlying files in /data/media will be created with user and group media_rw (1023)
+# virtual sdcard daemon running as media_rw (1023)
 service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
     class late_start
+    oneshot
 
+service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
+    class late_start
+    disabled
+
+# begin of Wi-Fi
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \
     -e/data/misc/wifi/entropy.bin \
     -O/data/misc/wifi/sockets -g@android:wpa_wlan0
+    # we will start as root and wpa_supplicant will switch to user wifi
+    # after setting up the capabilities required for WEXT
+    # user wifi
+    # group wifi inet keystore
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
@@ -515,10 +527,10 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     -I/system/etc/wifi/p2p_supplicant_overlay.conf \
     -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1 \
     -O/data/misc/wifi/sockets -g@android:wpa_wlan0
-#   we will start as root and wpa_supplicant will switch to user wifi
-#   after setting up the capabilities required for WEXT
-#   user wifi
-#   group wifi inet keystore
+    # we will start as root and wpa_supplicant will switch to user wifi
+    # after setting up the capabilities required for WEXT
+    # user wifi
+    # group wifi inet keystore
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
@@ -611,8 +623,3 @@ service immvibed /system/bin/immvibed
     user shell
     group shell
     oneshot
-
-# fusewrapped external sdcard daemon running as media_rw (1023)
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled
