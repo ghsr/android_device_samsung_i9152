@@ -125,6 +125,7 @@ BOARD_SEPOLICY_UNION += \
     immvibed.te \
     kernel.te \
     macloader.te \
+    netd.te \
     rild.te \
     shell.te \
     system_server.te \
