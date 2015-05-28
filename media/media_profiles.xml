@@ -54,16 +54,6 @@
 <!ELEMENT AudioDecoderCap EMPTY>
 <!ATTLIST AudioDecoderCap name (wma) #REQUIRED>
 <!ATTLIST AudioDecoderCap enabled (true|false) #REQUIRED>
-<!ELEMENT VideoEditorCap EMPTY>
-<!ATTLIST VideoEditorCap maxInputFrameWidth CDATA #REQUIRED>
-<!ATTLIST VideoEditorCap maxInputFrameHeight CDATA #REQUIRED>
-<!ATTLIST VideoEditorCap maxOutputFrameWidth CDATA #REQUIRED>
-<!ATTLIST VideoEditorCap maxOutputFrameHeight CDATA #REQUIRED>
-<!ATTLIST VideoEditorCap maxPrefetchYUVFrames CDATA #REQUIRED>
-<!ELEMENT ExportVideoProfile EMPTY>
-<!ATTLIST ExportVideoProfile name (h264|h263|m4v) #REQUIRED>
-<!ATTLIST ExportVideoProfile profile CDATA #REQUIRED>
-<!ATTLIST ExportVideoProfile level CDATA #REQUIRED>
 ]>
 <!--
      This file is used to declare the multimedia profiles and capabilities
@@ -426,13 +416,5 @@
     -->
     <VideoDecoderCap name="wmv" enabled="true"/>
     <AudioDecoderCap name="wma" enabled="true"/>
-
-    <VideoEditorCap  maxInputFrameWidth="1920"
-       maxInputFrameHeight="1080" maxOutputFrameWidth="1080"
-       maxOutputFrameHeight="1920" maxPrefetchYUVFrames="6"/>
-    <!--
-         Codec = h.264, Baseline profile, level 4
-    -->
-    <ExportVideoProfile name="h264" profile= "1" level="2048"/>
 
 </MediaSettings>
