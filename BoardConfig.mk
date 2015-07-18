@@ -39,6 +39,7 @@ TARGET_RECOVERY_FSTAB := device/samsung/i9152/ramdisk/fstab.capri_ss_crater
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_RECOVERY_DENSITY := hdpi
 
 # Hardware rendering
 USE_OPENGL_RENDERER := true
