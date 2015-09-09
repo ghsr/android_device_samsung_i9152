@@ -41,11 +41,12 @@ PRODUCT_PACKAGES += \
 
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
 
-# Audio modules
+# Open-source HALs
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
-    audio.r_submix.default
+    audio.r_submix.default \
+    lights.capri
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
