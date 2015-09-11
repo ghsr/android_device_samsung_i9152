@@ -14,10 +14,8 @@
      limitations under the License.
 -->
 
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
+<resources>
     <!-- This is used to determine whether to hide the
          preferred application install location settings-->
     <bool name="config_hide_app_install_location" translatable="false">false</bool>
-
 </resources>
