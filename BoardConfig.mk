@@ -121,6 +121,7 @@ BOARD_SEPOLICY_UNION += \
     device.te \
     geomagneticd.te \
     gpsd.te \
+    hostapd.te \
     init.te \
     install_recovery.te \
     immvibed.te \
@@ -130,8 +131,11 @@ BOARD_SEPOLICY_UNION += \
     radio.te \
     rild.te \
     shell.te \
+    system_app.te \
     system_server.te \
     tvserver.te \
+    uncrypt.te \
     untrusted_app.te \
     vclmk.te \
-    vold.te
+    vold.te \
+    wpa.te
