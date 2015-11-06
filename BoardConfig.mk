@@ -31,11 +31,12 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1572864000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5880414208
-BOARD_FLASH_BLOCK_SIZE := 262144
+BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
+BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/samsung/i9152/ramdisk/fstab.capri_ss_crater
+TARGET_RECOVERY_FSTAB := device/samsung/i9152/ramdisk/fstab.capri
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -100,9 +101,6 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 # jemalloc causes a lot of random crash on free()
 MALLOC_IMPL := dlmalloc
 
-# Compat
-TARGET_USES_LOGD := false
-
 # SkTextBox for libtvout
 BOARD_USES_SKTEXTBOX := true
 
@@ -110,33 +108,4 @@ BOARD_USES_SKTEXTBOX := true
 EXTENDED_FONT_FOOTPRINT := true
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/i9152/sepolicy
-
-BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    property_contexts \
-    service_contexts \
-    bkmgrd.te \
-    device.te \
-    geomagneticd.te \
-    gpsd.te \
-    hostapd.te \
-    init.te \
-    install_recovery.te \
-    immvibed.te \
-    kernel.te \
-    macloader.te \
-    netd.te \
-    radio.te \
-    recovery.te \
-    rild.te \
-    shell.te \
-    system_app.te \
-    system_server.te \
-    tvserver.te \
-    uncrypt.te \
-    untrusted_app.te \
-    vclmk.te \
-    vold.te \
-    wpa.te
+#BOARD_SEPOLICY_DIRS += device/samsung/i9152/sepolicy

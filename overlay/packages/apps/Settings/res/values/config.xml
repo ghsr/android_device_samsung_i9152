@@ -16,6 +16,6 @@
 
 <resources>
     <!-- This is used to determine whether to hide the
-         preferred application install location settings-->
-    <bool name="config_hide_app_install_location" translatable="false">false</bool>
+         preferred application install location settings
+    <bool name="config_hide_app_install_location" translatable="false">false</bool> -->
 </resources>

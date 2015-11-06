@@ -4,18 +4,22 @@ $(call inherit-product, vendor/samsung/i9152/i9152-vendor.mk)
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Boot animation
+TARGET_SCREEN_WIDTH := 540
+TARGET_SCREEN_HEIGHT := 960
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     setup_fs
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ramdisk/init.capri_ss_crater.rc:root/init.capri_ss_crater.rc \
+    $(LOCAL_PATH)/ramdisk/fstab.capri:root/fstab.capri \
+    $(LOCAL_PATH)/ramdisk/init.capri.rc:root/init.capri.rc \
     $(LOCAL_PATH)/ramdisk/init.bcm281x5.usb.rc:root/init.bcm281x5.usb.rc \
     $(LOCAL_PATH)/ramdisk/init.log.rc:root/init.log.rc \
-    $(LOCAL_PATH)/ramdisk/init.recovery.capri_ss_crater.rc:root/init.recovery.capri_ss_crater.rc \
-    $(LOCAL_PATH)/ramdisk/ueventd.capri_ss_crater.rc:root/ueventd.capri_ss_crater.rc \
-    $(LOCAL_PATH)/ramdisk/fstab.capri_ss_crater:root/fstab.capri_ss_crater
+    $(LOCAL_PATH)/ramdisk/init.recovery.capri.rc:root/init.recovery.capri.rc \
+    $(LOCAL_PATH)/ramdisk/ueventd.capri.rc:root/ueventd.capri.rc
 
 # Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
@@ -40,6 +44,11 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf
 
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/config/config-bcm.mk)
+
+# GPS/RIL
+PRODUCT_PACKAGES += \
+    libstlport \
+    libglgps-compat
 
 # Open-source HALs
 PRODUCT_PACKAGES += \
