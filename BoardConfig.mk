@@ -56,6 +56,7 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/ device/samsung/i9152/cmhw/
 
 # RIL
 BOARD_RIL_CLASS := ../../../device/samsung/i9152/ril/
+COMMON_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
 
 # GPS
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/i9152/include
