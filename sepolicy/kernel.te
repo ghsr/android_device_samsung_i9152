@@ -1,3 +1,10 @@
-allow kernel device:blk_file { create setattr };
 allow kernel self:capability mknod;
-allow kernel mmc_block_device:blk_file rw_file_perms;
+allow kernel block_device:blk_file write;
+
+allow kernel device:dir { write add_name };
+allow kernel device:blk_file { create setattr };
+
+allow kernel wifi_efs_file:dir search;
+allow kernel wifi_efs_file:file { read open };
+
+allow kernel wifi_data_file:file { read open };

@@ -111,4 +111,4 @@ BOARD_USES_SKTEXTBOX := true
 EXTENDED_FONT_FOOTPRINT := true
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += device/samsung/i9152/sepolicy
+BOARD_SEPOLICY_DIRS += device/samsung/i9152/sepolicy

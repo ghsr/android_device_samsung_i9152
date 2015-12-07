@@ -1,2 +1,0 @@
-allow recovery labeledfs:filesystem remount;
-allow recovery mmc_block_device:blk_file { open read ioctl };

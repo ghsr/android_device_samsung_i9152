@@ -1,2 +1,0 @@
-allow system_app shell_data_file:dir search;
-allow system_app block_device:dir search;
