@@ -2,10 +2,6 @@
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
-# Set default USB configuration
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
-
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/system/lib/libbrcm_ril.so \
