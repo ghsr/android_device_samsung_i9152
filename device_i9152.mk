@@ -8,10 +8,6 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 TARGET_SCREEN_WIDTH := 480
 TARGET_SCREEN_HEIGHT := 800
 
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    setup_fs
-
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/fstab.capri:root/fstab.capri \
