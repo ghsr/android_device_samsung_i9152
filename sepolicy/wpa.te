@@ -1,1 +1,1 @@
-allow wpa wifi_data_file:sock_file create_file_perms;
+allow wpa rfkill_device:chr_file rw_file_perms;

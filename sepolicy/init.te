@@ -1,16 +1,12 @@
-allow init self:capability sys_module;
-allow init gps_data_file:fifo_file write;
-allow init gpu_device:chr_file { write getattr ioctl };
-allow init input_device:chr_file ioctl;
-allow init kernel:security { read_policy load_policy };
-allow init property_socket:sock_file write;
-allow init radio_device:chr_file { write ioctl };
-allow init radio_device:blk_file { write setattr };
-allow init root_block_device:blk_file setattr;
+# chmod in init.capri.rc (for bkmgrd)
+allow init block_device:blk_file setattr;
+allow init radio_device:blk_file setattr;
+
 allow init serial_device:chr_file { write ioctl };
+allow init radio_block_device:blk_file { write setattr };
+allow init root_block_device:blk_file setattr;
 allow init sysfs:lnk_file setattr;
-allow init sysfs_bluetooth_writable:file getattr;
 allow init tmpfs:lnk_file create;
-allow init mediaserver:binder call;
-allow init servicemanager:binder { transfer call };
-allow init surfaceflinger:binder call;
+
+# insmod
+allow init self:capability sys_module; # TODO: want sys_ptrace too

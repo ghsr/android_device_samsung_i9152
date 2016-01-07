@@ -1,1 +1,1 @@
-allow hostapd wifi_data_file:sock_file write;
+allow hostapd rfkill_device:chr_file rw_file_perms;
