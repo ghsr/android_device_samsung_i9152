@@ -51,12 +51,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libglgps-compat
 
-# Open-source HALs
+# Audio modules
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
-    audio.r_submix.default \
-    lights.capri
+    audio.r_submix.default
 
 # Audio configuration
 PRODUCT_COPY_FILES += \
