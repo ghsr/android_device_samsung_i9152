@@ -17,8 +17,7 @@
 
 #include <healthd.h>
 
-void
-healthd_board_init(struct healthd_config *config)
+void healthd_board_init(struct healthd_config *config)
 {
     // battery needs to be used instead of bcm59056_charger
     config->batteryStatusPath      = "/sys/class/power_supply/battery/status";
@@ -30,8 +29,7 @@ healthd_board_init(struct healthd_config *config)
     config->batteryTechnologyPath  = "/sys/class/power_supply/battery/technology";
 }
 
-int
-healthd_board_battery_update(struct android::BatteryProperties *props)
+int healthd_board_battery_update(struct android::BatteryProperties*)
 {
     // don't log to kernel
     return 1;
