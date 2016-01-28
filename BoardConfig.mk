@@ -35,13 +35,11 @@ BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 5880414208
 BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_FLASH_BLOCK_SIZE := 131072
-BOARD_HAS_LARGE_FILESYSTEM := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/samsung/i9152/ramdisk/fstab.capri
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_DENSITY := hdpi
 
 # Hardware rendering
@@ -103,12 +101,6 @@ TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # jemalloc causes a lot of random crash on free()
 MALLOC_IMPL := dlmalloc
-
-# SkTextBox for libtvout
-BOARD_USES_SKTEXTBOX := true
-
-# Include an expanded selection of fonts
-EXTENDED_FONT_FOOTPRINT := true
 
 # SELinux
 BOARD_SEPOLICY_DIRS += device/samsung/i9152/sepolicy
