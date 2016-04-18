@@ -8,14 +8,14 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 TARGET_SCREEN_WIDTH := 480
 TARGET_SCREEN_HEIGHT := 800
 
-# Ramdisk
+# Init files
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ramdisk/fstab.capri:root/fstab.capri \
-    $(LOCAL_PATH)/ramdisk/init.capri.rc:root/init.capri.rc \
-    $(LOCAL_PATH)/ramdisk/init.bcm281x5.usb.rc:root/init.bcm281x5.usb.rc \
-    $(LOCAL_PATH)/ramdisk/init.log.rc:root/init.log.rc \
-    $(LOCAL_PATH)/ramdisk/init.recovery.capri.rc:root/init.recovery.capri.rc \
-    $(LOCAL_PATH)/ramdisk/ueventd.capri.rc:root/ueventd.capri.rc
+    $(LOCAL_PATH)/rootdir/fstab.capri:root/fstab.capri \
+    $(LOCAL_PATH)/rootdir/init.capri.rc:root/init.capri.rc \
+    $(LOCAL_PATH)/rootdir/init.bcm281x5.usb.rc:root/init.bcm281x5.usb.rc \
+    $(LOCAL_PATH)/rootdir/init.log.rc:root/init.log.rc \
+    $(LOCAL_PATH)/rootdir/init.recovery.capri.rc:root/init.recovery.capri.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.capri.rc:root/ueventd.capri.rc
 
 # Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
