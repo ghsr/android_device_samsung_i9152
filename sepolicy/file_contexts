@@ -20,7 +20,6 @@
 /dev/bcm_log                                    u:object_r:radio_device:s0
 /dev/bcm_security                               u:object_r:radio_device:s0
 /dev/flightmode-opt                             u:object_r:radio_device:s0
-/dev/rfkill                                     u:object_r:rfkill_device:s0
 /dev/socket/rild1                               u:object_r:rild_socket:s0
 
 ###################################
@@ -50,8 +49,6 @@
 ###################################
 # Data files
 #
-/data/.cid.info                                 u:object_r:wifi_data_file:s0
-/data/.psm.info                                 u:object_r:wifi_data_file:s0
 /data/misc/radio(/.*)?                          u:object_r:ril_db_file:s0
 /data/system/yas.cfg                            u:object_r:geomagneticd_data_file:s0
 /data/system/yas-backup.cfg                     u:object_r:geomagneticd_data_file:s0
