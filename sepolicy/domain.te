@@ -1,1 +1,2 @@
+# 32bit personality requests
 dontaudit domain kernel:system module_request;

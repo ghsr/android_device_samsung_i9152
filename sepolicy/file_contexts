@@ -49,6 +49,7 @@
 ###################################
 # Data files
 #
+/data/.psm.info                                 u:object_r:wifi_data_file:s0
 /data/misc/radio(/.*)?                          u:object_r:ril_db_file:s0
 /data/system/yas.cfg                            u:object_r:geomagneticd_data_file:s0
 /data/system/yas-backup.cfg                     u:object_r:geomagneticd_data_file:s0
