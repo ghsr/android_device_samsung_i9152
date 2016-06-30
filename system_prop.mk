@@ -34,6 +34,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.brcm.ap_crash=none \
     persist.brcm.cp_crash=none \
     ro.tvout.enable=true \
+    config.disable_atlas=true \
     wifi.interface=wlan0 \
     ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc
 
