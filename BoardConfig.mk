@@ -88,6 +88,7 @@ WIFI_BAND                           := 802_11_ABG
 
 # healthd
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.capri
+WITH_CM_CHARGER := false
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := crater,craterxx,i9152
