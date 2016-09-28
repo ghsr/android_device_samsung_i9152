@@ -21,6 +21,8 @@ namespace android {
 extern "C" {
 
 	void *CRYPTO_malloc(int num, const char *file, int line) {
+	    (void)file;
+	    (void)line;
 	    return malloc(num);
 	}
 
@@ -36,6 +38,11 @@ extern "C" {
 	void* _ZN7android13SensorManager16createEventQueueENS_7String8Ei(void* obj, String8 packageName, int mode);
 	void* _ZN7android13SensorManager16createEventQueueEv(void* obj) {
 	    return _ZN7android13SensorManager16createEventQueueENS_7String8Ei(obj, String8(""), 0);
+	}
+
+	ssize_t _ZN7android13SensorManager13getSensorListEPPKPKNS_6SensorE(void* obj, Sensor const* const** list);
+	ssize_t _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE(void* obj, Sensor const* const** list) {
+	    return _ZN7android13SensorManager13getSensorListEPPKPKNS_6SensorE(obj, list);
 	}
 
 }
