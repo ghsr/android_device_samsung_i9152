@@ -24,12 +24,14 @@ import android.os.Message;
 import android.os.Parcel;
 import android.os.SystemProperties;
 import android.telephony.ModemActivityInfo;
-import android.telephony.Rlog;
-import com.android.internal.telephony.RILConstants;
-import java.util.Collections;
 import android.telephony.PhoneNumberUtils;
+import android.telephony.Rlog;
+
+import com.android.internal.telephony.uicc.IccUtils;
+import com.android.internal.telephony.RILConstants;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Custom RIL to handle unique behavior of BCM RIL
@@ -147,7 +149,7 @@ public class SamsungBCMRIL extends RIL implements CommandsInterface {
     }
 
     protected RILRequest
-    processSolicited (Parcel p) {
+    processSolicited (Parcel p, int type) {
         int serial, error;
 
         serial = p.readInt();
@@ -377,7 +379,7 @@ public class SamsungBCMRIL extends RIL implements CommandsInterface {
 
     @Override
     protected void
-    processUnsolicited (Parcel p) {
+    processUnsolicited (Parcel p, int type) {
         int dataPosition = p.dataPosition();
         int response = p.readInt();
         Object ret;
@@ -389,7 +391,7 @@ public class SamsungBCMRIL extends RIL implements CommandsInterface {
                 p.setDataPosition(dataPosition);
 
                 // Forward responses that we are not overriding to the super class
-                super.processUnsolicited(p);
+                super.processUnsolicited(p, type);
                 return;
         }} catch (Throwable tr) {
             Rlog.e(RILJ_LOG_TAG, "Exception processing unsol response: " + response +

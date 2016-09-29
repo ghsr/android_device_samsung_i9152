@@ -46,10 +46,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-swap=false
 
-# OTA Server Url
-PRODUCT_PROPERTY_OVERRIDES += \
-    cm.updater.uri=http://ghsr-update.appspot.com/api
-
 # Disable ADB authentication
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.adb.secure=0 \

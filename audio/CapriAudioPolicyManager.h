@@ -27,11 +27,12 @@ namespace android {
 
 class CapriAudioPolicyManager: public AudioPolicyManager
 {
-public:
-    CapriAudioPolicyManager(AudioPolicyClientInterface *clientInterface);
-    virtual ~CapriAudioPolicyManager() {}
 
-    virtual void setPhoneState(audio_mode_t state);
+public:
+                CapriAudioPolicyManager(AudioPolicyClientInterface *clientInterface);
+        virtual ~CapriAudioPolicyManager() {}
+
+        virtual void setPhoneState(audio_mode_t state);
 };
 
 }  // namespace android

@@ -40,14 +40,14 @@ CapriAudioPolicyManager::CapriAudioPolicyManager(AudioPolicyClientInterface *cli
 void CapriAudioPolicyManager::setPhoneState(audio_mode_t state)
 {
     if (!isStateInCall(mEngine->getPhoneState()) && isStateInCall(state)) {
-		// We need to reset mLastVoiceVolume every call start to force the
-		// volume to be always set since the HAL sometimes forget about it
+        // We need to reset mLastVoiceVolume every call start to force the
+        // volume to be always set since the HAL sometimes forget about it
         ALOGI("Resetting mLastVoiceVolume");
         mLastVoiceVolume = -1.0f;
     }
 
-	// Call parent function
-	AudioPolicyManager::setPhoneState(state);
+    // Call parent function
+    AudioPolicyManager::setPhoneState(state);
 }
 
 }; // namespace android
