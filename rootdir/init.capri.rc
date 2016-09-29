@@ -39,9 +39,6 @@ on init
 
     symlink /dev/block/mmcblk0p11 /dev/block/param
 
-    # We will create our own ril-daemon service with different perm and sockets
-    stop ril-daemon
-
 on post-fs-data
     # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
@@ -420,7 +417,7 @@ service geomagneticd /system/bin/geomagneticd
     user compass
     group system input
 
-service capri-ril-daemon /system/bin/rild
+service ril-daemon /system/bin/rild
     class main
     socket rild stream 660 root radio
     socket rild1 stream 660 root radio
