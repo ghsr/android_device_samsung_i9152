@@ -102,14 +102,13 @@ TARGET_OTA_ASSERT_DEVICE := crater,craterxx,i9152
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 
 # Bootanimation
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
-# jemalloc causes a lot of random crash on free()
+# Disable tcache
 MALLOC_SVELTE := true
 
 # Some of our vendor libs have text relocations
