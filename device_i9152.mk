@@ -4,10 +4,6 @@ $(call inherit-product, vendor/samsung/i9152/i9152-vendor.mk)
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-# Use high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-
 # Boot animation
 TARGET_SCREEN_WIDTH := 480
 TARGET_SCREEN_HEIGHT := 800
