@@ -3,13 +3,13 @@
         "remote": "github",
         "repository": "ghsr/android_kernel_samsung_i9152",
         "target_path": "kernel/samsung/i9152",
-        "revision": "cm-13.0"
+        "revision": "android-6.0"
     },
     {
         "remote": "github",
         "repository": "ghsr/proprietary_vendor_samsung_i9152",
         "target_path": "vendor/samsung/i9152",
-        "revision": "cm-13.0"
+        "revision": "android-6.0"
     },
     {
         "remote": "github",
