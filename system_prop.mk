@@ -2,6 +2,10 @@
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
+# Media
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.stagefright.codecremote=false
+
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     rild.libpath=/system/lib/libbrcm_ril.so \
