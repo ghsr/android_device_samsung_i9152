@@ -242,6 +242,6 @@
     <bool name="config_dozeAfterScreenOff">true</bool>
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
 
-    <!-- Disable IpReachability monitor
-    <bool name="config_wifi_ipreachability_monitor">false</bool> -->
+    <!-- Disable IpReachability monitor -->
+    <bool name="config_wifi_ipreachability_monitor">false</bool>
 </resources>
