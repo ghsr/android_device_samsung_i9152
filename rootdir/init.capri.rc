@@ -417,14 +417,6 @@ service geomagneticd /system/bin/geomagneticd
     user compass
     group system input
 
-service ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-    socket rild1 stream 660 root radio
-    socket rild-debug stream 660 radio system
-    user root
-    group radio cache inet misc audio system log
-
 service charger /sbin/healthd -c
     class charger
     critical
