@@ -13,32 +13,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SamsungBCMRIL \
     persist.radio.multisim.config=dsds \
     ro.telephony.call_ring.multiple=0 \
-    ro.telephony.call_ring=0 \
-    mobiledata.interfaces=rmnet0 \
-    ro.ril.gprsclass=10 \
-    ro.ril.hsxpa=1
+    ro.telephony.call_ring=0
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
-    brcm.hwc.no-hdmi-trans=1 \
-    debug.hwui.render_dirty_regions=false \
     ro.opengles.version=131072 \
+    debug.hwui.render_dirty_regions=false \
     ro.zygote.disable_gl_preload=1 \
-    ro.sf.lcd_density=240 \
-    ro.lcd_brightness=123 \
-    ro.lcd_min_brightness=20
-
-# FM Radio SNR
-PRODUCT_PROPERTY_OVERRIDES += \
-    service.brcm.fm.start_snr=41 \
-    service.brcm.fm.stop_snr=20
+    ro.sf.lcd_density=240
 
 # Misc
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.brcm.log=none \
     persist.brcm.ap_crash=none \
     persist.brcm.cp_crash=none \
-    ro.tvout.enable=true \
     config.disable_atlas=true \
     wifi.interface=wlan0 \
     ro.cm.hardware.cabc=/sys/class/mdnie/mdnie/cabc
