@@ -25,6 +25,12 @@
   },
   {
     "remote": "github",
+    "repository": "LineageOS/android_packages_apps_SamsungServiceMode",
+    "target_path": "packages/apps/SamsungServiceMode",
+    "revision": "cm-14.1"
+  },
+  {
+    "remote": "github",
     "repository": "LineageOS/android_packages_resources_devicesettings",
     "target_path": "packages/resources/devicesettings"
     "revision": "cm-14.1"
