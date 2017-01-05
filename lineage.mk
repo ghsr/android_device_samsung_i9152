@@ -4,11 +4,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 # Inherit device configuration
 $(call inherit-product, device/samsung/i9152/device_i9152.mk)
 
-# Inherit some common CM stuff.
+# Inherit some common Lineage stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_NAME := cm_i9152
+PRODUCT_NAME := lineage_i9152
 PRODUCT_DEVICE := i9152
 PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := Samsung
