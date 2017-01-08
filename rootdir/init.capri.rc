@@ -455,7 +455,7 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     oneshot
 
 service macloader /system/bin/macloader
-    class late_start
+    class main
     oneshot
 
 on property:init.svc.macloader=stopped
