@@ -7,6 +7,7 @@ allow init radio_block_device:blk_file { write setattr };
 allow init root_block_device:blk_file setattr;
 allow init sysfs:lnk_file setattr;
 allow init tmpfs:lnk_file create;
+allow init debugfs:file write;
 
 # insmod
 allow init self:capability sys_module; # TODO: want sys_ptrace too

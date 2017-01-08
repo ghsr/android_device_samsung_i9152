@@ -12,6 +12,7 @@ allow rild block_device:dir search;
 allow rild radio_block_device:blk_file r_file_perms;
 allow rild storage_file:dir search;
 allow rild self:packet_socket { create ioctl };
+allow rild toolbox_exec:file rx_file_perms;
 
 # /proc/bcm_fuse_net_config
 allow rild proc:file write;
